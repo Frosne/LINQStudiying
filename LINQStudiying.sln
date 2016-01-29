@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQStudiying", "LINQStudiying\LINQStudiying.csproj", "{96A89433-DC25-41EF-88E3-CD3CC7F3A529}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96A89433-DC25-41EF-88E3-CD3CC7F3A529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A89433-DC25-41EF-88E3-CD3CC7F3A529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A89433-DC25-41EF-88E3-CD3CC7F3A529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A89433-DC25-41EF-88E3-CD3CC7F3A529}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
