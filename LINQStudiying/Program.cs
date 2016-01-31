@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LINQStudiying
 {
@@ -10,7 +11,7 @@ namespace LINQStudiying
     {
         static void Main(string[] args)
         {
-            ExampleOne();
+           
             System.Console.Read();
         }
 
@@ -42,6 +43,33 @@ namespace LINQStudiying
             {
                 System.Console.WriteLine(e.Current);
             }
+        }
+        public static List<Customer> GetCustomers()
+        {
+            return new List<Customer>
+            {
+                new Customer{ City = "", ContactName="", CustomerID = ""},
+                new Customer{CustomerID="", ContactName="", City = ""}
+            };
+        }
+        public static void ExampleFour()
+        {
+            var query = from c in GetCustomers()
+                        where c.City == ""
+                        select new { City = c.City, ContactName = c.ContactName };
+            foreach (var elem in query)
+                System.Console.WriteLine(elem);
+
+
+        }
+        public static void ExampleFiveUsingXMLWithLINQ()
+        {
+            XDocument xdoc = XDocument.Load(@"D:\Alt\Professional.xml");
+            var xml = from x in xdoc.Descendants("component")
+                      where x.Attribute("processorArchitecture").Value == "x86"
+                      select x.Attribute("name");
+            foreach (var elem in xml)
+                System.Console.WriteLine(elem);
         }
     }
 
