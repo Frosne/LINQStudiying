@@ -11,7 +11,7 @@ namespace LINQStudiying
     {
         static void Main(string[] args)
         {
-           
+            ExampleSevenStringStatic();
             System.Console.Read();
         }
 
@@ -36,7 +36,7 @@ namespace LINQStudiying
         }
         public static void ExampleThree()
         {
-            List<int> lst = new List<int>(){1,2,3};
+            List<int> lst = new List<int>() { 1, 2, 3 };
             List<int>.Enumerator e = lst.GetEnumerator();
 
             while (e.MoveNext())
@@ -71,8 +71,41 @@ namespace LINQStudiying
             foreach (var elem in xml)
                 System.Console.WriteLine(elem);
         }
-    }
+        public static void ExampleSixCreatingXMLWithLINQ()
+        {
+            XDocument xdoc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
+                new XElement("Objects",
+                    new XElement("Person",
+                        new XAttribute("Property1", "value"),
+                        new XAttribute("Property2", "value")
+                        ),
+                        new XElement("Person",
+                            new XAttribute("Property1", "value1"),
+                            new XAttribute("Property3", "value")
+                            )
+                        )
+                        );
 
+            System.Console.WriteLine(xdoc.Declaration);
+            System.Console.Write(xdoc);
+            xdoc.Save(@"test.xml");
+
+
+
+
+
+
+        }
+        /// <summary>
+        /// Returns the MethodInfo[] (array) with 
+        /// </summary>
+        public static void ExampleSevenStringStatic()
+        {
+            var query = from m in typeof(string).GetMethods()
+                        where m.IsSecurityCritical
+                        select m;
+        }
+    }
     public class Customer
     {
         public string CustomerID { get; set; }
