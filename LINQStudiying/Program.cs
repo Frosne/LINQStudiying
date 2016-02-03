@@ -11,7 +11,7 @@ namespace LINQStudiying
     {
         static void Main(string[] args)
         {
-            ExampleSevenStringStatic();
+            ExampleEightMethod();
             System.Console.Read();
         }
 
@@ -97,14 +97,31 @@ namespace LINQStudiying
 
         }
         /// <summary>
-        /// Returns the MethodInfo[] (array) with 
+        /// Returns the MethodInfo[] (array)
         /// </summary>
         public static void ExampleSevenStringStatic()
         {
             var query = from m in typeof(string).GetMethods()
                         where m.IsSecurityCritical
                         select m;
+
+         
         }
+        public static void ExampleEightMethod()
+        {
+            var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var path2 =  AppDomain.CurrentDomain.BaseDirectory;
+            ExampleEight.Test();
+            ExampleEight.Test2();
+        }
+        public static void ExampleNineMethod()
+        {
+            ExampleNine ex = new ExampleNine();
+            
+        }
+        
+
     }
     public class Customer
     {
@@ -112,4 +129,39 @@ namespace LINQStudiying
         public string ContactName { get; set; }
         public string City { get; set; }
     }
+    public static partial class ExampleEight
+    {
+        public static void Test()
+        {
+            System.Console.WriteLine("meow");
+        }
+    }
+    public static partial class ExampleEight
+    {
+        public static void Test2()
+        {
+            System.Console.WriteLine("Meow2");
+        }
+    }
+    public partial class ExampleNine {
+      
+      partial void Method();
+
+      public void Test()
+      {
+          Method();
+      }
+
+        
+    }
+
+    public partial class ExampleNine
+    {
+        partial void Method()
+        {
+            System.Console.WriteLine("Hello World");
+        }
+    }
+
+
 }
