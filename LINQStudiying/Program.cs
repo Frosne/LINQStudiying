@@ -11,7 +11,7 @@ namespace LINQStudiying
     {
         static void Main(string[] args)
         {
-            ExampleTen();
+            ExampleTwelwe();
             System.Console.Read();
         }
 
@@ -166,6 +166,22 @@ namespace LINQStudiying
 
             System.Console.Read();
         }
+        public static void ExampleEleven()
+        {
+            var anontype = new { IntegerVar = 1, StringVar = "cat" };
+            System.Console.WriteLine(anontype.GetType());
+            var anontype2 = new { IntegerVar = 1, StringVar = "cat" };
+            System.Console.WriteLine("{0}\n{1}",anontype2.GetType(),anontype.GetType().ToString() == anontype2.GetType().ToString());
+            
+            
+
+        }
+        public static void ExampleTwelwe()
+        {
+            DelegateExample.DelegateTest();
+        }
+        
+
    }
     public class Customer
     {
@@ -203,6 +219,25 @@ namespace LINQStudiying
         partial void Method()
         {
             System.Console.WriteLine("Hello World");
+        }
+    }
+    public static class DelegateExample
+    {
+        public delegate int Delegate(int a, int b);
+        public static int Add(int a, int b)
+        {
+            return a + b;
+        }
+        public static void CallDelegate(Delegate d)
+        {
+            System.Console.WriteLine(d(1, 2));
+        }
+
+        public static void DelegateTest()
+        {
+            Delegate d = Add;
+            CallDelegate(d);
+            System.Console.WriteLine(d(0, 0));
         }
     }
 
