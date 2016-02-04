@@ -11,7 +11,7 @@ namespace LINQStudiying
     {
         static void Main(string[] args)
         {
-            ExampleEightMethod();
+            ExampleTen();
             System.Console.Read();
         }
 
@@ -120,9 +120,53 @@ namespace LINQStudiying
             ExampleNine ex = new ExampleNine();
             
         }
-        
+        public static void ExampleTen()
+        {
+            HashSet<int> hs = new HashSet<int> { 1, 2, 3, 4 };
+            if (hs.Add(1))
+                System.Console.WriteLine("The same value added");
+            else
+                System.Console.WriteLine("The struucture is designed such way not to have the same element");
 
-    }
+            hs.Clear();
+
+            List<int> lst = new List<int>();
+            Random rnd = new Random();
+            System.Diagnostics.Stopwatch st = new System.Diagnostics.Stopwatch();
+            st.Start();
+            for (int i = 0; i < 10000000; i++)
+                lst.Add(i);
+            st.Stop();
+            var memory = st.ElapsedTicks;
+            System.Console.WriteLine("For list putting the 100000000 values took {0} ticks", st.ElapsedTicks);
+
+            st.Restart();
+            for (int i = 0; i < 10000000; i++)
+                hs.Add(i);
+            st.Stop();
+            System.Console.WriteLine("For hashset putting the 100000000 values took {0} ticks {1} percents", st.ElapsedTicks, memory > st.ElapsedTicks ? (st.ElapsedTicks / memory) : (st.ElapsedTicks / memory)*-1);
+
+            lst.Clear();
+            hs.Clear();
+            st.Restart();
+            for (int i = 0; i < 10000000; i++)
+                lst.Add(rnd.Next(int.MaxValue));
+            st.Stop();
+            memory = st.ElapsedTicks;
+            System.Console.WriteLine("For list putting the 100000000 random values took {0} ticks and size {1}", st.ElapsedTicks, lst.Count);
+
+            st.Restart();
+            for (int i = 0; i < 10000000; i++)
+                hs.Add(rnd.Next(int.MaxValue));
+            st.Stop();
+            System.Console.WriteLine("For hashset putting the 100000000 random values took {0} ticks and size {1} in percent {2} time, in percent space {3}", st.ElapsedTicks, hs.Count, memory > st.ElapsedTicks ? (st.ElapsedTicks / memory) : (st.ElapsedTicks / memory) * -1, lst.Count > hs.Count ? (lst.Count / hs.Count) : (lst.Count / hs.Count) * -1);
+
+            //Stack dont have an Add method
+            //Stack<int> st = new Stack<int> { 1, 2, 3 };
+
+            System.Console.Read();
+        }
+   }
     public class Customer
     {
         public string CustomerID { get; set; }
@@ -154,7 +198,6 @@ namespace LINQStudiying
 
         
     }
-
     public partial class ExampleNine
     {
         partial void Method()
