@@ -11,7 +11,7 @@ namespace LINQStudiying
     {
         static void Main(string[] args)
         {
-            ExampleTwelwe();
+            ExampleThirteen();
             System.Console.Read();
         }
 
@@ -180,6 +180,14 @@ namespace LINQStudiying
         {
             DelegateExample.DelegateTest();
         }
+        public static void ExampleThirteen()
+        {
+            Func<int, int, int> lambda = (a, b) => (a + b);
+            Func<int, int, long> lambda2 = (a, b) => (a + b);
+            Func<long, long, int> lambda3 = (a, b) => (a + b);
+            System.Console.WriteLine(lambda(1, 2));
+            System.Console.WriteLine(lambda2(1, 2));
+        }
         
 
    }
@@ -228,16 +236,29 @@ namespace LINQStudiying
         {
             return a + b;
         }
+        public static long AddLong(long a, long b)
+        {
+            return a + b;
+        }
         public static void CallDelegate(Delegate d)
         {
             System.Console.WriteLine(d(1, 2));
         }
-
         public static void DelegateTest()
         {
             Delegate d = Add;
             CallDelegate(d);
             System.Console.WriteLine(d(0, 0));
+        }
+
+        public delegate TResult DelegateNew<T1, T2, TResult>(T1 a, T2 b);
+        public static void DelegateTest2()
+        {
+            DelegateNew<int, int, int> d;
+            DelegateNew<long, long, long> d2;
+            d = Add;
+            d2 = AddLong;
+            
         }
     }
 
