@@ -9,10 +9,31 @@ namespace LINQStudiying
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void Main()
         {
-            ExampleThirteen();
-            System.Console.Read();
+            int[] values = { 1, 2, 3, 4 };
+
+            int counter = 0;
+
+            values.Where(x =>
+                             {
+                                 counter++;
+                                 return x > 1;
+                             }).OrderBy(x =>
+                                            {
+                                                counter++;
+                                                return -x;
+
+                                            }).Select(x => x).Count(x =>
+                                            {
+                                                counter++;
+                                                return x > 2;
+                                            });
+
+            Console.WriteLine(counter);
+
+
         }
 
         public static void ExampleOne()
@@ -105,20 +126,20 @@ namespace LINQStudiying
                         where m.IsSecurityCritical
                         select m;
 
-         
+
         }
         public static void ExampleEightMethod()
         {
             var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var path2 =  AppDomain.CurrentDomain.BaseDirectory;
+            var path2 = AppDomain.CurrentDomain.BaseDirectory;
             ExampleEight.Test();
             ExampleEight.Test2();
         }
         public static void ExampleNineMethod()
         {
             ExampleNine ex = new ExampleNine();
-            
+
         }
         public static void ExampleTen()
         {
@@ -144,7 +165,7 @@ namespace LINQStudiying
             for (int i = 0; i < 10000000; i++)
                 hs.Add(i);
             st.Stop();
-            System.Console.WriteLine("For hashset putting the 100000000 values took {0} ticks {1} percents", st.ElapsedTicks, memory > st.ElapsedTicks ? (st.ElapsedTicks / memory) : (st.ElapsedTicks / memory)*-1);
+            System.Console.WriteLine("For hashset putting the 100000000 values took {0} ticks {1} percents", st.ElapsedTicks, memory > st.ElapsedTicks ? (st.ElapsedTicks / memory) : (st.ElapsedTicks / memory) * -1);
 
             lst.Clear();
             hs.Clear();
@@ -171,9 +192,9 @@ namespace LINQStudiying
             var anontype = new { IntegerVar = 1, StringVar = "cat" };
             System.Console.WriteLine(anontype.GetType());
             var anontype2 = new { IntegerVar = 1, StringVar = "cat" };
-            System.Console.WriteLine("{0}\n{1}",anontype2.GetType(),anontype.GetType().ToString() == anontype2.GetType().ToString());
-            
-            
+            System.Console.WriteLine("{0}\n{1}", anontype2.GetType(), anontype.GetType().ToString() == anontype2.GetType().ToString());
+
+
 
         }
         public static void ExampleTwelwe()
@@ -184,83 +205,112 @@ namespace LINQStudiying
         {
             Func<int, int, int> lambda = (a, b) => (a + b);
             Func<int, int, long> lambda2 = (a, b) => (a + b);
-            Func<long, long, int> lambda3 = (a, b) => (a + b);
+            //Func<long, long, int> lambda3 = (a, b) => (a + b);
             System.Console.WriteLine(lambda(1, 2));
             System.Console.WriteLine(lambda2(1, 2));
-        }
-        
-
-   }
-    public class Customer
-    {
-        public string CustomerID { get; set; }
-        public string ContactName { get; set; }
-        public string City { get; set; }
-    }
-    public static partial class ExampleEight
-    {
-        public static void Test()
-        {
-            System.Console.WriteLine("meow");
-        }
-    }
-    public static partial class ExampleEight
-    {
-        public static void Test2()
-        {
-            System.Console.WriteLine("Meow2");
-        }
-    }
-    public partial class ExampleNine {
-      
-      partial void Method();
-
-      public void Test()
-      {
-          Method();
-      }
-
-        
-    }
-    public partial class ExampleNine
-    {
-        partial void Method()
-        {
-            System.Console.WriteLine("Hello World");
-        }
-    }
-    public static class DelegateExample
-    {
-        public delegate int Delegate(int a, int b);
-        public static int Add(int a, int b)
-        {
-            return a + b;
-        }
-        public static long AddLong(long a, long b)
-        {
-            return a + b;
-        }
-        public static void CallDelegate(Delegate d)
-        {
-            System.Console.WriteLine(d(1, 2));
-        }
-        public static void DelegateTest()
-        {
-            Delegate d = Add;
-            CallDelegate(d);
-            System.Console.WriteLine(d(0, 0));
-        }
-
-        public delegate TResult DelegateNew<T1, T2, TResult>(T1 a, T2 b);
-        public static void DelegateTest2()
-        {
-            DelegateNew<int, int, int> d;
-            DelegateNew<long, long, long> d2;
-            d = Add;
-            d2 = AddLong;
-            
-        }
-    }
 
 
+
+
+        }
+        public static void ExampleFourteen()
+        {
+            int n;
+            Func<int> func = () => { n = 6; return n; };
+            n = func();
+            System.Console.WriteLine(n);
+        }
+        public static void ExerciseOne()
+        {
+            Func<int, int, int> lambdaSubstraction = (a, b) => (a - b);
+            System.Console.WriteLine(lambdaSubstraction(15, 2));
+
+            Func<int, int> lambdaMult = (a) => (5 * a);
+            Action<string> lambdaPrint = (a) => System.Console.WriteLine(a);
+            Action lambdaW = () => System.Console.WriteLine("sdfsdf");
+            Func<int, int, int, decimal> lambdaSimple = (a, b, c) => (Convert.ToDecimal((a + b) / c));
+            Func<int, int, long> lambdaAdd = (a, b) => (a + (long)b);
+
+
+        }
+        public static void ExampleFivteen()
+        {
+            var list = new List<int> { 1, 2, 3 };
+            IEnumerator<int> e = list.GetEnumerator();
+
+        }
+        public class Customer
+        {
+            public string CustomerID { get; set; }
+            public string ContactName { get; set; }
+            public string City { get; set; }
+        }
+        public static partial class ExampleEight
+        {
+            public static void Test()
+            {
+                System.Console.WriteLine("meow");
+            }
+        }
+        public static partial class ExampleEight
+        {
+            public static void Test2()
+            {
+                System.Console.WriteLine("Meow2");
+            }
+        }
+        public partial class ExampleNine
+        {
+
+            partial void Method();
+
+            public void Test()
+            {
+                Method();
+            }
+
+
+        }
+        public partial class ExampleNine
+        {
+            partial void Method()
+            {
+                System.Console.WriteLine("Hello World");
+            }
+        }
+        public static class DelegateExample
+        {
+            public delegate int Delegate(int a, int b);
+            public static int Add(int a, int b)
+            {
+                return a + b;
+            }
+            public static long AddLong(long a, long b)
+            {
+                return a + b;
+            }
+            public static void CallDelegate(Delegate d)
+            {
+                System.Console.WriteLine(d(1, 2));
+            }
+            public static void DelegateTest()
+            {
+                Delegate d = Add;
+                CallDelegate(d);
+                System.Console.WriteLine(d(0, 0));
+            }
+
+            public delegate TResult DelegateNew<T1, T2, TResult>(T1 a, T2 b);
+            public static void DelegateTest2()
+            {
+                DelegateNew<int, int, int> d;
+                DelegateNew<long, long, long> d2;
+                d = Add;
+                d2 = AddLong;
+
+            }
+        }
+
+
+    }
 }
